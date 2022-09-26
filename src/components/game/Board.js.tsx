@@ -1,16 +1,31 @@
 import React, {Component, ReactNode} from "react";
 import Square from "./Square";
 
-class Board extends Component<any, any> {
-  renderSquare(i:any): ReactNode {
-    return <Square />
+interface iProps{
+  // value: null | String[];
+  squares: String[];
+  onClick: Function;
+}
+interface iState {
+}
+
+class Board extends Component<iProps, iState> {
+  constructor(props: iProps) {
+    super(props);
+  }
+  state:iState = {}
+  renderSquare(i:number): ReactNode {
+    return <Square
+      value = {this.props.squares[i]}
+      onClick={()=>this.props.onClick(i)}
+    />
   }
 
   render() {
-    const status: String = 'Next Player: X';
+    // const status: String = 'Next Player: ' + (this.state.xIsNext ? 'X' : 'O');
+
     return (
       <div>
-        <div className="status">{ status }</div>
         <div className="board-row">
           {this.renderSquare(0)}
           {this.renderSquare(1)}
