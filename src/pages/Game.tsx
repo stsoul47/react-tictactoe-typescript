@@ -12,6 +12,11 @@ interface iState {
   xIsNext: boolean;
 }
 
+/**
+ * tictactoe game pages
+ *
+ * @author jslee
+ */
 class Game extends Component<iProps, iState> {
   constructor(props: iProps) {
     super(props);
@@ -24,6 +29,12 @@ class Game extends Component<iProps, iState> {
     }
   }
 
+  /**
+   * click event handler
+   *
+   * @author jslee
+   * @param i
+   */
   handleClick(i:number): void {
     // const squares = this.state.squares.slice();
     // const history = this.state.history;
@@ -43,6 +54,10 @@ class Game extends Component<iProps, iState> {
     });
   }
 
+  /**
+   * 승리 조건 계산
+   * @param squares 현재 클릭된 Board의 값
+   */
   calculateWinner(squares: String[]): null | String {
     const lines = [
       [0, 1, 2],
@@ -63,6 +78,11 @@ class Game extends Component<iProps, iState> {
     return null;
   }
 
+  /**
+   * history jump
+   *
+   * @param step 이동할 단계
+   */
   jumpTo(step: number) {
     // console.log('tset');
     this.setState({
