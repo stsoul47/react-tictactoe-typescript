@@ -28,8 +28,8 @@ class Game extends Component<iProps, iState> {
     // const squares = this.state.squares.slice();
     // const history = this.state.history;
     const history = this.state.history.slice(0, this.state.stepNumber + 1);
-    let current: any = history[history.length - 1];
-    let squares: String[] = current.squares.slice();
+    const current: any = history[history.length - 1];
+    const squares: String[] = current.squares.slice();
     if(this.calculateWinner(squares) || squares[i]){
       return;
     }
