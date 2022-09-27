@@ -15,27 +15,21 @@ interface iState {
 class Game extends Component<iProps, iState> {
   constructor(props: iProps) {
     super(props);
-  }
-  state: iState = {
-    history: [{
-      squares: Array(9).fill(null),
-    }],
-    stepNumber:0,
-    xIsNext: true,
+    this.state = {
+      history: [{
+        squares: Array(9).fill(null),
+      }],
+      stepNumber: 0,
+      xIsNext: true
+    }
   }
 
   handleClick(i:number): void {
     // const squares = this.state.squares.slice();
     // const history = this.state.history;
     const history = this.state.history.slice(0, this.state.stepNumber + 1);
-    let current: any = null;
-    let squares: String[] = [];
-    if (history) {
-      current = history[this.state.stepNumber];
-    }
-    if(current) {
-      squares = current.squares.slice();
-    }
+    let current: any = history[history.length - 1];
+    let squares: String[] = current.squares.slice();
     if(this.calculateWinner(squares) || squares[i]){
       return;
     }
@@ -70,6 +64,7 @@ class Game extends Component<iProps, iState> {
   }
 
   jumpTo(step: number) {
+    // console.log('tset');
     this.setState({
       stepNumber: step,
       xIsNext: (step % 2) === 0,
@@ -78,7 +73,7 @@ class Game extends Component<iProps, iState> {
 
   render() {
     const history = this.state.history;
-    const current = history[history.length - 1];
+    const current = history[this.state.stepNumber];
     const winner: null | String = this.calculateWinner(current.squares);
     const moves = history.map((step, move) =>{
       const desc = move ? 'Go to move #' + move : 'Go to game start';

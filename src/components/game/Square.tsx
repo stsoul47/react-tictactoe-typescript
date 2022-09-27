@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 
 interface iProps{
-  value: null | String;
+  value: String;
   onClick: Function
 }
 interface iState {
